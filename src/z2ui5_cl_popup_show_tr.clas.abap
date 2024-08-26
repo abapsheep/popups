@@ -24,7 +24,7 @@ CLASS z2ui5_cl_popup_show_tr DEFINITION
 
     CLASS-METHODS factory
       RETURNING
-        VALUE(result) TYPE REF TO z2ui5_cl_pop_transport.
+        VALUE(result) TYPE REF TO Z2UI5_CL_POPUP_SHOW_TR.
 
     CLASS-METHODS add_DATA_to_tranport
       IMPORTING
