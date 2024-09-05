@@ -3,7 +3,6 @@ CLASS z2ui5_cl_popup_show_tr DEFINITION
   CREATE PUBLIC.
 
   PUBLIC SECTION.
-    INTERFACES if_serializable_object.
     INTERFACES z2ui5_if_app.
 
     TYPES trobj_name     TYPE c LENGTH 120.
