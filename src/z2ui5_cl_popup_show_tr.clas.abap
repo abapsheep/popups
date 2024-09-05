@@ -24,7 +24,7 @@ CLASS z2ui5_cl_popup_show_tr DEFINITION
 
     CLASS-METHODS factory
       RETURNING
-        VALUE(result) TYPE REF TO Z2UI5_CL_POPUP_SHOW_TR.
+        VALUE(result) TYPE REF TO z2ui5_cl_popup_show_tr.
 
     CLASS-METHODS add_DATA_to_tranport
       IMPORTING
@@ -241,10 +241,13 @@ CLASS z2ui5_cl_popup_show_tr IMPLEMENTATION.
     DATA(fb1) = 'TR_APPEND_TO_COMM_OBJS_KEYS'.
 
     CALL FUNCTION fb1
-      EXPORTING  wi_trkorr = is_transport-task
-      TABLES     wt_e071   = <t_e071>
-                 wt_e071k  = <t_e071k>
-      EXCEPTIONS OTHERS    = 1.
+      EXPORTING
+        wi_trkorr = is_transport-task
+      TABLES
+        wt_e071   = <t_e071>
+        wt_e071k  = <t_e071k>
+      EXCEPTIONS
+        OTHERS    = 1.
     IF sy-subrc <> 0.
       RETURN.
     ENDIF.
@@ -252,8 +255,10 @@ CLASS z2ui5_cl_popup_show_tr IMPLEMENTATION.
     DATA(fb2) = 'TR_SORT_AND_COMPRESS_COMM'.
 
     CALL FUNCTION fb2
-      EXPORTING  iv_trkorr = is_transport-task
-      EXCEPTIONS OTHERS    = 1.
+      EXPORTING
+        iv_trkorr = is_transport-task
+      EXCEPTIONS
+        OTHERS    = 1.
     IF sy-subrc <> 0.
       RETURN.
     ELSE.
