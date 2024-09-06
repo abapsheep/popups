@@ -25,6 +25,7 @@ CLASS z2ui5_cl_pop_displ_f4_help DEFINITION
       RETURNING
         VALUE(result) TYPE REF TO z2ui5_cl_pop_displ_f4_help.
 
+
   PROTECTED SECTION.
     DATA client             TYPE REF TO z2ui5_if_client.
     DATA mv_init            TYPE abap_bool.
@@ -459,8 +460,8 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
     ms_layout = z2ui5_cl_pop_display_layout=>init_layout( control  = z2ui5_cl_pop_display_layout=>m_table
                                                      data     = mt_data
-                                                     handle01 = class 
-                                                     handle02 = mv_table 
+                                                     handle01 = conv #( class )
+                                                     handle02 = conv #( mv_table )
                                                      handle03 =  'F4'  ).
 
   ENDMETHOD.
