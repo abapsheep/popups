@@ -1,4 +1,4 @@
-# a2UI5 - Popups
+# More Popups for abap2UI5
 Work in progress... 🚧 🏗️ 🦺
 
 #### Dependencies:
