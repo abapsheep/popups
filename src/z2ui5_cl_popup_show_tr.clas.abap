@@ -91,7 +91,6 @@ CLASS z2ui5_cl_popup_show_tr IMPLEMENTATION.
 
     on_event( ).
 
-    client->view_model_update( ).
   ENDMETHOD.
 
   METHOD on_init.
