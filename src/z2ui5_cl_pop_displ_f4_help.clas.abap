@@ -8,7 +8,7 @@ CLASS z2ui5_cl_pop_displ_f4_help DEFINITION
 
     DATA mt_data         TYPE REF TO data.
     DATA ms_data_row     TYPE REF TO data.
-    DATA mo_layout       TYPE ref to z2ui5_cl_layout.
+    DATA mo_layout       TYPE REF TO z2ui5_cl_layout.
 
     DATA mv_table        TYPE string.
     DATA mv_field        TYPE string.
@@ -338,8 +338,8 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
       WHEN OTHERS.
 
-        client = z2ui5_cl_pop_display_layout=>on_event_layout( client = client
-                                                          layout = mo_layout ).
+        z2ui5_cl_pop_display_layout=>on_event_layout( client = client
+                                                      layout = mo_layout ).
 
     ENDCASE.
 
@@ -454,15 +454,15 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
   METHOD get_layout.
 
-    data(class) = ``.
+    DATA(class) = ``.
     class = cl_abap_classdescr=>get_class_name( me ).
     SHIFT class LEFT DELETING LEADING '\CLASS='.
 
-    mo_layout = z2ui5_cl_pop_display_layout=>init_layout( control  = z2ui5_cl_pop_display_layout=>m_table
-                                                     data     = mt_data
-                                                     handle01 = conv #( class )
-                                                     handle02 = conv #( mv_table )
-                                                     handle03 =  'F4'  ).
+    z2ui5_cl_pop_display_layout=>init_layout( control  = z2ui5_cl_layout=>m_table
+                                              data     = mt_data
+                                              handle01 = CONV #( class )
+                                              handle02 = CONV #( mv_table )
+                                              handle03 =  'F4'  ).
 
   ENDMETHOD.
 
