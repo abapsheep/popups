@@ -8,7 +8,7 @@ CLASS z2ui5_cl_pop_displ_f4_help DEFINITION
 
     DATA mt_data         TYPE REF TO data.
     DATA ms_data_row     TYPE REF TO data.
-    DATA ms_layout       TYPE z2ui5_cl_pop_display_layout=>ty_s_layout.
+    DATA mo_layout       TYPE REF TO z2ui5_cl_layout.
 
     DATA mv_table        TYPE string.
     DATA mv_field        TYPE string.
@@ -254,28 +254,32 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
                  )->title( mv_check_tab
                  )->toolbar_spacer( ).
 
-    headder = z2ui5_cl_pop_display_layout=>render_layout_function( xml    = headder
-                                                              client = client ).
+
+    headder = z2ui5_cl_pop_display_layout=>render_layout_function(
+                xml    = headder
+                client = client
+                layout = mo_layout
+             ).
 
     DATA(columns) = table->columns( ).
 
-    LOOP AT ms_layout-t_layout REFERENCE INTO DATA(layout).
+    LOOP AT mo_layout->ms_layout-t_layout REFERENCE INTO DATA(layout).
       DATA(lv_index) = sy-tabix.
 
       columns->column( visible         = client->_bind( val       = layout->visible
-                                                        tab       = ms_layout-t_layout
+                                                        tab       = mo_layout->ms_layout-t_layout
                                                         tab_index = lv_index )
                        halign          = client->_bind( val       = layout->halign
-                                                        tab       = ms_layout-t_layout
+                                                        tab       = mo_layout->ms_layout-t_layout
                                                         tab_index = lv_index )
                        importance      = client->_bind( val       = layout->importance
-                                                        tab       = ms_layout-t_layout
+                                                        tab       = mo_layout->ms_layout-t_layout
                                                         tab_index = lv_index )
                        mergeduplicates = client->_bind( val       = layout->merge
-                                                        tab       = ms_layout-t_layout
+                                                        tab       = mo_layout->ms_layout-t_layout
                                                         tab_index = lv_index )
                        minscreenwidth  = client->_bind( val       = layout->width
-                                                        tab       = ms_layout-t_layout
+                                                        tab       = mo_layout->ms_layout-t_layout
                                                         tab_index = lv_index )
        )->text( layout->tlabel ).
 
@@ -289,7 +293,7 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
                                                                     t_arg = VALUE #( ( `${ROW_ID}`  ) ) )
                                        )->cells( ).
 
-    LOOP AT ms_layout-t_layout REFERENCE INTO layout.
+    LOOP AT mo_layout->ms_layout-t_layout REFERENCE INTO layout.
 
       cells->object_identifier( text = |\{{ layout->fname }\}| ).
 
@@ -338,8 +342,8 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
       WHEN OTHERS.
 
-        client = z2ui5_cl_pop_display_layout=>on_event_layout( client = client
-                                                          layout = ms_layout ).
+        z2ui5_cl_pop_display_layout=>on_event_layout( client = client
+                                                      layout = mo_layout ).
 
     ENDCASE.
 
@@ -443,7 +447,7 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
         " War es das Layout?
         DATA(app) = CAST z2ui5_cl_pop_display_layout( client->get_app( client->get( )-s_draft-id_prev_app ) ).
 
-        ms_layout = app->ms_layout.
+        mo_layout = app->mo_layout.
 
         render_view( ).
 
@@ -454,15 +458,15 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
   METHOD get_layout.
 
-    data(class) = ``.
+    DATA(class) = ``.
     class = cl_abap_classdescr=>get_class_name( me ).
     SHIFT class LEFT DELETING LEADING '\CLASS='.
 
-    ms_layout = z2ui5_cl_pop_display_layout=>init_layout( control  = z2ui5_cl_pop_display_layout=>m_table
-                                                     data     = mt_data
-                                                     handle01 = conv #( class )
-                                                     handle02 = conv #( mv_table )
-                                                     handle03 =  'F4'  ).
+    mo_layout = z2ui5_cl_layout=>factory( control  = z2ui5_cl_layout=>m_table
+                                              data     = mt_data
+                                              handle01 = class
+                                              handle02 = mv_table
+                                              handle03 =  'F4'  ).
 
   ENDMETHOD.
 
