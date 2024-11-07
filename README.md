@@ -1,8 +1,6 @@
 # More Popups for abap2UI5
-Popups for the use with abap2UI5!
-<br>
 
-🚀 [Get Started](https://abap2ui5.github.io/docs/)
+🚀 [More Information...](https://abap2ui5.github.io/docs/addons/popup.html)
 
 ##### Dependencies:
 * abap2UI5
