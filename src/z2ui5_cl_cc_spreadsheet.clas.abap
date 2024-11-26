@@ -91,13 +91,13 @@ CLASS Z2UI5_CL_CC_SPREADSHEET IMPLEMENTATION.
                      |\n| &&
                      `                             var oBinding, oSettings, oSheet, vTableId, vViewPrefix,vPrefixTableId;` && |\n| &&
                      `                             vTableId = oControl.getProperty("tableId")` && |\n| &&
-                     `                             vPrefixTableId = sap.z2ui5.oView.createId( vTableId );` && |\n| &&
+                     `                             vPrefixTableId = z2ui5.oView.createId( vTableId );` && |\n| &&
                      `                             var oTable;` && |\n| &&
-                     `                             if (!oTable) { oTable = sap.z2ui5.oView.byId(vTableId); };` && |\n| &&
-                     `                             if (!oTable) { oTable = sap.z2ui5.oViewNest.byId(vTableId); };` && |\n| &&
-                     `                             if (!oTable) { oTable = sap.z2ui5.oViewNest2.byId(vTableId); };` && |\n| &&
-                     `                             if (!oTable) { oTable = sap.z2ui5.oViewPopup.Fragment.byId('popupId',vTableId); };` && |\n| &&
-                     `                             if (!oTable) { oTable = sap.z2ui5.oViewPopover.byId(vTableId); };` && |\n| &&
+                     `                             if (!oTable) { oTable = z2ui5.oView.byId(vTableId); };` && |\n| &&
+                     `                             if (!oTable) { oTable = z2ui5.oViewNest.byId(vTableId); };` && |\n| &&
+                     `                             if (!oTable) { oTable = z2ui5.oViewNest2.byId(vTableId); };` && |\n| &&
+                     `                             if (!oTable) { oTable = z2ui5.oViewPopup.Fragment.byId('popupId',vTableId); };` && |\n| &&
+                     `                             if (!oTable) { oTable = z2ui5.oViewPopover.byId(vTableId); };` && |\n| &&
                      `                             oBinding = oTable.getBinding("rows");` && |\n| &&
                      `                             if (oBinding == null) {` && |\n| &&
                      `                               oBinding = oTable.getBinding("items");` && |\n| &&
