@@ -5,8 +5,3 @@
 
 #### XLSX Export
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/4fb90a2b-feb9-46ae-98e2-d9974505619f">
-
-
-::: tip
-Have you implemented features with abap2UI5 that could help others? Consider sharing them! Contributions and pull requests are welcome.
-:::
