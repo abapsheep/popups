@@ -1,8 +1,12 @@
-# UI Extensions for abap2UI5
+# UI Extensions
 
-🚀 [More Information...](https://abap2ui5.github.io/docs/addons/popup.html)
+#### Favicon
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/a4dbaeee-071e-4b1c-b701-b37799d97d1a">
 
-##### Dependencies:
-* abap2UI5
-* S-RTTI
-* layout-variant-management
+#### XLSX Export
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/4fb90a2b-feb9-46ae-98e2-d9974505619f">
+
+
+::: tip
+Have you implemented features with abap2UI5 that could help others? Consider sharing them! Contributions and pull requests are welcome.
+:::
