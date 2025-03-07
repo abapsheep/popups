@@ -25,7 +25,6 @@ CLASS z2ui5_cl_pop_displ_f4_help DEFINITION
       RETURNING
         VALUE(result) TYPE REF TO z2ui5_cl_pop_displ_f4_help.
 
-
   PROTECTED SECTION.
     DATA client             TYPE REF TO z2ui5_if_client.
     DATA mv_init            TYPE abap_bool.
@@ -111,6 +110,8 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
   METHOD get_where_tab.
 
+    DATA val TYPE string.
+
     LOOP AT mt_dfies REFERENCE INTO DATA(dfies).
 
       IF NOT ( dfies->keyflag = abap_true OR dfies->fieldname = mv_check_tab_field ).
@@ -137,11 +138,13 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
         CLEAR escape.
       ENDIF.
 
-      result = |{ result }{ and } ( { dfies->fieldname } LIKE '%{ <value> }%' { escape } )|.
+      val = <value>.
 
-      IF result CA `_`.
-        REPLACE ALL OCCURRENCES OF `_` IN result WITH `#_`.
+      IF val CA `_`.
+        REPLACE ALL OCCURRENCES OF `_` IN val WITH `#_`.
       ENDIF.
+
+      result = |{ result }{ and } ( { dfies->fieldname } LIKE '%{ val }%' { escape } )|.
 
     ENDLOOP.
 
@@ -192,7 +195,7 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
 
         set_row_id( ).
 
-      CATCH cx_root.
+      CATCH cx_root INTO DATA(cx). " TODO: variable is assigned but never used (ABAP cleaner)
         client->message_toast_display( 'Table not released.' ).
     ENDTRY.
 
@@ -254,12 +257,9 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
                  )->title( mv_check_tab
                  )->toolbar_spacer( ).
 
-
-    headder = z2ui5_cl_pop_display_layout=>render_layout_function(
-                xml    = headder
-                client = client
-                layout = mo_layout
-             ).
+    headder = z2ui5_cl_pop_display_layout=>render_layout_function( xml    = headder
+                                                                   client = client
+                                                                   layout = mo_layout ).
 
     DATA(columns) = table->columns( ).
 
@@ -463,10 +463,10 @@ CLASS z2ui5_cl_pop_displ_f4_help IMPLEMENTATION.
     SHIFT class LEFT DELETING LEADING '\CLASS='.
 
     mo_layout = z2ui5_cl_layout=>factory( control  = z2ui5_cl_layout=>m_table
-                                              data     = mt_data
-                                              handle01 = class
-                                              handle02 = mv_table
-                                              handle03 =  'F4'  ).
+                                          data     = mt_data
+                                          handle01 = class
+                                          handle02 = mv_table
+                                          handle03 = 'F4'  ).
 
   ENDMETHOD.
 
