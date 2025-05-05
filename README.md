@@ -1,4 +1,4 @@
-# Custom Controls
+# custom-controls
 
 #### Favicon
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/a4dbaeee-071e-4b1c-b701-b37799d97d1a">
